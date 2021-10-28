@@ -35,6 +35,7 @@ TRANSLATOR_HTML = '''
 </script>
 '''
 
+
 def start_translator(translate=dummy, html=TRANSLATOR_HTML):
     def convert(text):
         try:
@@ -47,19 +48,117 @@ def start_translator(translate=dummy, html=TRANSLATOR_HTML):
     output.register_callback('notebook.Convert', convert)
     display(IPython.display.HTML(html))
 
+# IDE Demo
+
+
+IDE_HTML = '''
+<style>
+.sample {
+    background-color: #b1eeff;
+    //padding: 10px;
+    //font-size: 18px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all  0.3s ease;
+    }
+.sample:hover {
+    background-color: #ffc9d7;
+    //padding: 25px;
+    font-size: 18px;
+    }
+</style>
+<textarea id="input" style="float: left; width: 48%; height:120px; font-size: large;">print("hello,world",)</textarea>
+<div style="margin: 10px; padding: 10px;">
+<div id="ide" style="background-color: #100066;color: #ffffff"></div>
+<div id="ide0" class="sample"></div>
+<div id="ide1" class="sample"></div>
+<div id="ide2" class="sample"></div>
+<div id="ide3" class="sample"></div>
+<div id="ide4" class="sample"></div>
+</div>
+<script>
+    var timer = null;
+    document.getElementById('input').addEventListener('input', (e) => {
+    var text = e.srcElement.value;
+    if(timer !== null) {
+        console.log('clear');
+        clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+        (async function() {
+            const result = await google.colab.kernel.invokeFunction('notebook.Convert', [text], {});
+            const data = result.data['application/json'];
+            var ide = document.getElementById('ide');
+            ide.innerHTML = data.text;
+            for(var i = 0; i < 5; i++) {
+              ide = document.getElementById(`ide${i}`);
+              ide.innerHTML='';
+            }
+            if(data.text.length>0) {
+              for(var i = 0; i < 5; i++) {
+                ide = document.getElementById(`ide${i}`);
+                ide.innerHTML='';
+                if(data.result[i] !== undefined) {
+                  ide.innerHTML = data.result[i];
+                }
+              }
+            }
+        })();
+        timer = null;
+    }, 400);
+    });
+</script>
+'''
+
+
+def beam_search(text):
+    return [text, text, text, text, text], [100, 100, 100, 100, 100]
+
+
+def trim_nlp(text):
+    if len(text) == 0:
+        return text
+    if ord(text[0]) < 127:
+        return trim_nlp(text[1:])
+    if ord(text[-1]) < 127:
+        return trim_nlp(text[:-1])
+    return text
+
+
+def start_ide(select=beam_search, head='そこで、', html=IDE_HTML):
+    def convert(text):
+        try:
+            text = trim_nlp(text)
+            pred, prob = select(head+text)
+            for i in range(len(pred)):
+                pred[i] = f'{pred[i]} ({prob[i]:.2f})'
+            return IPython.display.JSON({
+                'text': text,
+                'result': pred,
+            })
+        except Exception as e:
+            print(e)
+        return e
+
+    output.register_callback('notebook.Convert', convert)
+    display(IPython.display.HTML(html))
+
 
 # Chat
+
 
 BOT_ICON = 'https://4.bp.blogspot.com/-7LcdiJjflkE/XASwYu6DyuI/AAAAAAABQZs/K0EQCKmvDmsVbEES7sAb6_xJhJyQXXLFgCLcBGAs/s800/bluebird_robot_bot.png'
 YOUR_ICON = 'https://2.bp.blogspot.com/-WplygmIuX28/VZ-PPsDMOmI/AAAAAAAAvDU/OKG7taU7wXo/s800/girl_think.png'
 
-def start_chatbot(chat = dummy, start=None, **kw):
 
-  def display_bot(bot_text):
-    with output.redirect_to_element('#output'):
-      bot_name = kw.get('bot_name', 'ボット')
-      bot_icon = kw.get('bot_icon', BOT_ICON)
-      display(IPython.display.HTML(f'''
+def start_chatbot(chat=dummy, start=None, **kw):
+
+    def display_bot(bot_text):
+        with output.redirect_to_element('#output'):
+            bot_name = kw.get('bot_name', 'ボット')
+            bot_icon = kw.get('bot_icon', BOT_ICON)
+            display(IPython.display.HTML(f'''
       <div class="sb-box">
         <div class="icon-img icon-img-left">
             <img src="{bot_icon}" width="60px">
@@ -73,12 +172,12 @@ def start_chatbot(chat = dummy, start=None, **kw):
     </div><!-- /.sb-box -->
       '''))
 
-  def display_you(your_text):
-    with output.redirect_to_element('#output'):
-      your_name = kw.get('your_name', 'あなた')
-      your_icon = kw.get('your_icon', YOUR_ICON)
+    def display_you(your_text):
+        with output.redirect_to_element('#output'):
+            your_name = kw.get('your_name', 'あなた')
+            your_icon = kw.get('your_icon', YOUR_ICON)
 
-      display(IPython.display.HTML(f'''
+            display(IPython.display.HTML(f'''
       <div class="sb-box">
         <div class="icon-img icon-img-right">
             <img src="{your_icon}" width="60px">
@@ -92,7 +191,7 @@ def start_chatbot(chat = dummy, start=None, **kw):
       </div><!-- /.sb-box -->
       '''))
 
-  display(IPython.display.HTML('''
+    display(IPython.display.HTML('''
       <style>
         /* 全体 */
         .sb-box {
@@ -264,16 +363,15 @@ def start_chatbot(chat = dummy, start=None, **kw):
     <div style='text-align: right'><textarea id='input' style='width: 100%; background: #eee;'></textarea></div>
       '''))
 
-  def convert(your_text):
-    try:
-        display_you(your_text)
-        bot_text = chat(your_text, **kw)
-        time.sleep(random.randint(0,4))
-        display_bot(bot_text)
-    except Exception as e:
-        print(e)
+    def convert(your_text):
+        try:
+            display_you(your_text)
+            bot_text = chat(your_text, **kw)
+            time.sleep(random.randint(0, 4))
+            display_bot(bot_text)
+        except Exception as e:
+            print(e)
 
-  output.register_callback('notebook.Convert', convert)
-  if start is not None:
-    display_bot(start)
-
+    output.register_callback('notebook.Convert', convert)
+    if start is not None:
+        display_bot(start)
