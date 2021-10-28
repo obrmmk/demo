@@ -5,7 +5,7 @@ import time
 
 
 # ダミー関数
-def dummy(text: str):
+def dummy(text: str, **kw):
     # nmt = PyNMT(model, src_vocab, tgt_vocab)
     # translate(nmt, 'もしa+1が偶数ならば')
     return 'ほ'
@@ -35,7 +35,7 @@ TRANSLATOR_HTML = '''
 </script>
 '''
 
-def translator(translate=dummy, html=TRANSLATOR_HTML):
+def start_translator(translate=dummy, html=TRANSLATOR_HTML):
     def convert(text):
         try:
             text = translate(text)
@@ -53,7 +53,7 @@ def translator(translate=dummy, html=TRANSLATOR_HTML):
 BOT_ICON = 'https://4.bp.blogspot.com/-7LcdiJjflkE/XASwYu6DyuI/AAAAAAABQZs/K0EQCKmvDmsVbEES7sAb6_xJhJyQXXLFgCLcBGAs/s800/bluebird_robot_bot.png'
 YOUR_ICON = 'https://2.bp.blogspot.com/-WplygmIuX28/VZ-PPsDMOmI/AAAAAAAAvDU/OKG7taU7wXo/s800/girl_think.png'
 
-def run_chat(chat = dummy, start=None, **kw):
+def start_chatbot(chat = dummy, start=None, **kw):
 
   def display_bot(bot_text):
     with output.redirect_to_element('#output'):
@@ -265,10 +265,13 @@ def run_chat(chat = dummy, start=None, **kw):
       '''))
 
   def convert(your_text):
-    display_you(your_text)
-    bot_text = chat(your_text, **kw)
-    time.sleep(random.randint(0,4))
-    display_bot(bot_text)
+    try:
+        display_you(your_text)
+        bot_text = chat(your_text, **kw)
+        time.sleep(random.randint(0,4))
+        display_bot(bot_text)
+    except Exception as e:
+        print(e)
 
   output.register_callback('notebook.Convert', convert)
   if start is not None:
