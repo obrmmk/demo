@@ -2,7 +2,7 @@ try:
     import pegtree as pg
 except ModuleNotFoundError:
     import os
-    os.sytem('pip install pegtree')
+    os.system('pip install pegtree')
     import pegtree as pg
 import re
 
