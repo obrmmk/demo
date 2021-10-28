@@ -45,7 +45,7 @@ def start_translator(translate=dummy, html=TRANSLATOR_HTML):
         return e
 
     output.register_callback('notebook.Convert', convert)
-    IPython.display(IPython.display.HTML(html))
+    display(IPython.display.HTML(html))
 
 
 # Chat
