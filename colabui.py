@@ -68,7 +68,7 @@ IDE_HTML = '''
     font-size: 18px;
     }
 </style>
-<textarea id="input" style="float: left; width: 48%; height:120px; font-size: large;">print("hello,world",)</textarea>
+<textarea id="input" style="float: left; width: 48%; height:120px; font-size: large;">print("hello,world")</textarea>
 <div style="margin: 10px; padding: 10px;">
 <div id="ide" style="background-color: #100066;color: #ffffff"></div>
 <div id="ide0" class="sample"></div>
@@ -152,7 +152,7 @@ BOT_ICON = 'https://4.bp.blogspot.com/-7LcdiJjflkE/XASwYu6DyuI/AAAAAAABQZs/K0EQC
 YOUR_ICON = 'https://2.bp.blogspot.com/-WplygmIuX28/VZ-PPsDMOmI/AAAAAAAAvDU/OKG7taU7wXo/s800/girl_think.png'
 
 
-def start_chatbot(chat=dummy, start=None, **kw):
+def start_chatbot(chat=dummy, start='プログラミングで何かお困りかな？', **kw):
 
     def display_bot(bot_text):
         with output.redirect_to_element('#output'):
