@@ -151,7 +151,7 @@ class NMT(object):
     def __init__(self, MODEL_DIR):
         trained_model = MT5ForConditionalGeneration.from_pretrained(MODEL_DIR)
         tokenizer = MT5Tokenizer.from_pretrained(MODEL_DIR, is_fast=True)
-        
+
     def translate_beam(self, sentence: str, beamsize=5):
         """
         複数の翻訳候補をリストで返す。
@@ -162,6 +162,7 @@ class NMT(object):
         if USE_GPU:
             input_ids = input_ids.cuda()
         pred_list = self.trained_model.generate(input_ids)
+        return pred_list, sorted(prob_list, reverse=True)
 
 def make_pynmt(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', model_file='./model.zip'):
     GoogleDriveDownloader.download_file_from_google_drive(
