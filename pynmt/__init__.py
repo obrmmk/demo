@@ -1,6 +1,11 @@
 import torch
 from torch.utils.data import Dataset, DataLoader
-from transformers import MT5ForConditionalGeneration, MT5Tokenizer
+try:
+    from transformers import MT5ForConditionalGeneration, MT5Tokenizer
+except ModuleNotFoundError:
+    import os
+    os.system('pip install transformes')
+    from transformers import MT5ForConditionalGeneration, MT5Tokenizer
 
 from google_drive_downloader import GoogleDriveDownloader
 
@@ -29,7 +34,7 @@ class NMT(object):
         pred_list = self.predict
 
 
-def make_pynmt(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', model_file='./model.zip'):
+def make_pynmt(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', model_file='./model.zip.'):
     GoogleDriveDownloader.download_file_from_google_drive(
         file_id=model_id, dest_path=model_file, unzip=True)
     nmt = NMT(model_file)
