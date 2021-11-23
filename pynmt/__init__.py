@@ -20,6 +20,7 @@ class NMT(object):
         self.tokenizer.add_tokens(additional_special_tokens)
         
     def translate(self, src_sentence: str):
+        self.trained_model.config.update({"num_beams": 5})
         input_ids = self.tokenizer(src_sentence, return_tensors='pt').input_ids
         predict = self.trained_model.generate(input_ids,
                          return_dict_in_generate=True,
