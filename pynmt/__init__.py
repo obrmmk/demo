@@ -152,17 +152,15 @@ class NMT(object):
         tokenizer = MT5Tokenizer.from_pretrained(model_file, is_fast=True)
         additional_special_tokens = ['<A>', '<B>', '<C>', '<D>', '<E>', '<a>', '<b>', '<c>', '<d>', '<e>']
         tokenizer.add_tokens(additional_special_tokens, special_tokens=True)
-        
-        input_ids = tokenizer(text, return_tensors='pt').input_ids
-        if USE_GPU:
-            input_ids = input_ids.cuda()
-        predict = trained_model.generate(input_ids)
 
-    def translate_beam(self, src_sentence: str, beamsize=5):
+    def translate_beam(self, sentence: str, beamsize=5):
         """
         複数の翻訳候補をリストで返す。
         """
-        pred_list = self.predict
+        input_ids = tokenizer(sentence, return_tensors='pt').input_ids
+        if USE_GPU:
+            input_ids = input_ids.cuda()
+        pred_list = trained_model.generate(input_ids)
 
 def make_pynmt(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', model_file='./model.zip'):
     GoogleDriveDownloader.download_file_from_google_drive(
