@@ -5,8 +5,7 @@ from transformers import MT5ForConditionalGeneration, MT5Tokenizer
 from google_drive_downloader import GoogleDriveDownloader
 
 # デバイスの指定
-USE_GPU = torch.cuda.is_available()
-DEVICE = torch.device('cuda:0' if USE_GPU) else 'cpu')
+DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 print('DEVICE :', DEVICE)
 
 
@@ -22,8 +21,6 @@ class NMT(object):
         
     def translate(self, src_sentence: str):
         input_ids = self.tokenizer(src_sentence, return_tensors='pt').input_ids
-        if USE_GPU:
-            input_ids = input_ids.cuda()
         predict = trained_model.generate(input_ids,
                          return_dict_in_generate=True,
                          output_scores=True,
