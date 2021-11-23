@@ -1,11 +1,6 @@
 import torch
 from torch.utils.data import Dataset, DataLoader
-try:
-    from transformers import MT5ForConditionalGeneration, MT5Tokenizer
-except ModuleNotFoundError:
-    import os
-    os.system('pip install transformes')
-    from transformers import MT5ForConditionalGeneration, MT5Tokenizer
+from transformers import MT5ForConditionalGeneration, MT5Tokenizer
 
 from google_drive_downloader import GoogleDriveDownloader
 
