@@ -23,7 +23,7 @@ class NMT(object):
         if USE_GPU:
             input_ids = input_ids.cuda()
         predict = self.trained_model.generate(input_ids)
-        return tokenizer.decode(predict[0], skip_special_tokens=True)
+        return self.tokenizer.decode(predict[0], skip_special_tokens=True)
         
 def make_pynmt(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', model_file='./model.zip'):
     GoogleDriveDownloader.download_file_from_google_drive(
