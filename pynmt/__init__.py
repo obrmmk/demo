@@ -28,11 +28,10 @@ class NMT(object):
         """
         pred_list = self.predict
 
-
-def make_pynmt(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', model_file='./model.zip.'):
+def make_pynmt(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', model_file='./model.zip'):
     GoogleDriveDownloader.download_file_from_google_drive(
         file_id=model_id, dest_path=model_file, unzip=True)
-    nmt = NMT(model_file)
+    nmt = NMT("./content/model/")
 
     def pynmt(sentence):
         pred, prob = nmt.translate_beam(sentence)
