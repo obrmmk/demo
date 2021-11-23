@@ -20,8 +20,6 @@ class NMT(object):
         
     def translate(self, src_sentence: str):
         input_ids = self.tokenizer(src_sentence, return_tensors='pt').input_ids
-        if USE_GPU:
-            input_ids = input_ids.cuda()
         predict = self.trained_model.generate(input_ids)
         return self.tokenizer.decode(predict[0], skip_special_tokens=True)
         
