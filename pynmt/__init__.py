@@ -14,13 +14,13 @@ class NMT(object):
     def __init__(self, dir):
         trained_model = MT5ForConditionalGeneration.from_pretrained(dir)
         tokenizer = MT5Tokenizer.from_pretrained(dir, is_fast=True)
-
+        additional_special_tokens = ['<A>', '<B>', '<C>', '<D>', '<E>', '<a>', '<b>', '<c>', '<d>', '<e>']
+        tokenizer.add_tokens(additional_special_tokens)
+        
     def translate_beam(self, src_sentence: str, beamsize=5):
         """
         複数の翻訳候補をリストで返す。
         """
-        additional_special_tokens = ['<A>', '<B>', '<C>', '<D>', '<E>', '<a>', '<b>', '<c>', '<d>', '<e>']
-        self.tokenizer.add_tokens(additional_special_tokens)
         input_ids = self.tokenizer(src_sentence, return_tensors='pt').input_ids
         if USE_GPU:
             input_ids = input_ids.cuda()
