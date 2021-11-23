@@ -19,7 +19,7 @@ class NMT(object):
         additional_special_tokens = ['<A>', '<B>', '<C>', '<D>', '<E>', '<a>', '<b>', '<c>', '<d>', '<e>']
         self.tokenizer.add_tokens(additional_special_tokens)
         
-    def translate(self, src_sentence: str):
+    def translate_beam(self, src_sentence: str):
         self.trained_model.config.update({"num_beams": 5})
         input_ids = self.tokenizer(src_sentence, return_tensors='pt').input_ids
         predict = self.trained_model.generate(input_ids,
@@ -39,7 +39,7 @@ def make_pynmt(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', model_file='./model
     nmt = NMT(MODEL_DIR)
 
     def pynmt(sentence):
-        pred, prob= nmt.translate(sentence)
+        pred, prob = nmt.translate_beam(sentence)
         return pred, prob
 
     return pynmt
