@@ -21,13 +21,13 @@ class NMT(object):
         
     def translate(self, src_sentence: str):
         input_ids = self.tokenizer(src_sentence, return_tensors='pt').input_ids
-        predict = trained_model.generate(input_ids,
+        predict = self.trained_model.generate(input_ids,
                          return_dict_in_generate=True,
                          output_scores=True,
                          length_penalty = 5,
                          num_return_sequences = 5,
                          early_stopping = True)
-        pred_list = sorted([[tokenizer.decode(predict.sequences[i], skip_special_tokens=True), predict.sequences_scores[i].item()] for i in range(len(predict))], key=lambda x:x[1], reverse=True)
+        pred_list = sorted([[self.tokenizer.decode(predict.sequences[i], skip_special_tokens=True), predict.sequences_scores[i].item()] for i in range(len(predict))], key=lambda x:x[1], reverse=True)
         sentences_list = [ i[0] for i in pred_list ]
         scores_list = [ i[1] for i in pred_list ]                   
         return sentences_list, scores_list
