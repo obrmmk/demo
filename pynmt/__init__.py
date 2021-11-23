@@ -14,7 +14,7 @@ class NMT(object):
     model: object
     def __init__(self, dir):
         trained_model = MT5ForConditionalGeneration.from_pretrained(dir).to(DEVICE)
-        tokenizer = MT5Tokenizer.from_pretrained(dir, is_fast=True).to(DEVICE)
+        tokenizer = MT5Tokenizer.from_pretrained(dir, is_fast=True)
         additional_special_tokens = ['<A>', '<B>', '<C>', '<D>', '<E>', '<a>', '<b>', '<c>', '<d>', '<e>']
         tokenizer.add_tokens(additional_special_tokens)
         
