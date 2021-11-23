@@ -21,7 +21,7 @@ class NMT(object):
     def translate(self, src_sentence: str):
         input_ids = self.tokenizer(src_sentence, return_tensors='pt').input_ids
         predict = self.trained_model.generate(input_ids)
-        return self.tokenizer.decode(predict[0], skip_special_tokens=True)
+        return [self.tokenizer.decode(i, skip_special_tokens=True) for i in predict]
         
 def make_pynmt(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', model_file='./model.zip'):
     GoogleDriveDownloader.download_file_from_google_drive(
@@ -29,7 +29,7 @@ def make_pynmt(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', model_file='./model
     nmt = NMT(MODEL_DIR)
 
     def pynmt(sentence):
-        pred, prob = nmt.translate(sentence)
-        return pred, prob
+        pred = nmt.translate(sentence)
+        return pred
     return pynmt
 
