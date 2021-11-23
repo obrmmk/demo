@@ -13,10 +13,10 @@ MODEL_DIR = "./content/model/"
 class NMT(object):
     model: object
     def __init__(self, dir):
-        trained_model = MT5ForConditionalGeneration.from_pretrained(dir).to(DEVICE)
-        tokenizer = MT5Tokenizer.from_pretrained(dir, is_fast=True)
+        self.trained_model = MT5ForConditionalGeneration.from_pretrained(dir).to(DEVICE)
+        self.tokenizer = MT5Tokenizer.from_pretrained(dir, is_fast=True)
         additional_special_tokens = ['<A>', '<B>', '<C>', '<D>', '<E>', '<a>', '<b>', '<c>', '<d>', '<e>']
-        tokenizer.add_tokens(additional_special_tokens)
+        self.tokenizer.add_tokens(additional_special_tokens)
         
     def translate(self, src_sentence: str):
         input_ids = self.tokenizer(src_sentence, return_tensors='pt').input_ids
