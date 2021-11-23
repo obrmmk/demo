@@ -5,8 +5,10 @@ from transformers import MT5ForConditionalGeneration, MT5Tokenizer
 from google_drive_downloader import GoogleDriveDownloader
 
 # デバイスの指定
-DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+USE_GPU = torch.cuda.is_available()
+DEVICE = torch.device('cuda:0' if USE_GPU) else 'cpu')
 print('DEVICE :', DEVICE)
+
 
 MODEL_DIR = "./content/model/"
 
@@ -41,6 +43,6 @@ def make_pynmt(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', model_file='./model
     def pynmt(sentence):
         pred, prob= nmt.translate(sentence)
         return pred, prob
-        
+
     return pynmt
 
