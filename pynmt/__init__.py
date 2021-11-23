@@ -20,9 +20,19 @@ class NMT(object):
         
     def translate(self, src_sentence: str):
         input_ids = self.tokenizer(src_sentence, return_tensors='pt').input_ids
-        predict = self.trained_model.generate(input_ids)
-        return [self.tokenizer.decode(i, skip_special_tokens=True) for i in predict],[self.tokenizer.decode(i, skip_special_tokens=True) for i in predict]
-        
+        if USE_GPU:
+            input_ids = input_ids.cuda()
+        predict = trained_model.generate(input_ids,
+                         return_dict_in_generate=True,
+                         output_scores=True,
+                         length_penalty = 5,
+                         num_return_sequences = 5,
+                         early_stopping = True)
+        pred_list = sorted([[tokenizer.decode(predict.sequences[i], skip_special_tokens=True), predict.sequences_scores[i].item()] for i in range(len(predict))], key=lambda x:x[1], reverse=True)
+        sentences_list = [ i[0] for i in pred_list ]
+        scores_list = [ i[1] for i in pred_list ]                   
+        return sentences_list, scores_list
+
 def make_pynmt(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', model_file='./model.zip'):
     GoogleDriveDownloader.download_file_from_google_drive(
         file_id=model_id, dest_path=model_file, unzip=True)
@@ -31,5 +41,6 @@ def make_pynmt(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', model_file='./model
     def pynmt(sentence):
         pred, prob= nmt.translate(sentence)
         return pred, prob
+        
     return pynmt
 
