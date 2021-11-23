@@ -144,12 +144,13 @@ class MT5FineTuner(pl.LightningModule):
                           batch_size=self.hparams.eval_batch_size, 
                           num_workers=4)
 
+MODEL_DIR = "./content/model/"
 class NMT(object):
     model: object
-    def __init__(self, model_file):
-        trained_model = MT5ForConditionalGeneration.from_pretrained(model_file)
+    def __init__(self, MODEL_DIR):
+        trained_model = MT5ForConditionalGeneration.from_pretrained(MODEL_DIR)
 
-        tokenizer = MT5Tokenizer.from_pretrained(model_file, is_fast=True)
+        tokenizer = MT5Tokenizer.from_pretrained(MODEL_DIR, is_fast=True)
         additional_special_tokens = ['<A>', '<B>', '<C>', '<D>', '<E>', '<a>', '<b>', '<c>', '<d>', '<e>']
         tokenizer.add_tokens(additional_special_tokens, special_tokens=True)
 
@@ -157,7 +158,7 @@ class NMT(object):
         """
         複数の翻訳候補をリストで返す。
         """
-        input_ids = tokenizer(sentence, return_tensors='pt').input_ids
+        input_ids = self.tokenizer(sentence, return_tensors='pt').input_ids
         if USE_GPU:
             input_ids = input_ids.cuda()
         pred_list = trained_model.generate(input_ids)
@@ -165,7 +166,7 @@ class NMT(object):
 def make_pynmt(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', model_file='./model.zip'):
     GoogleDriveDownloader.download_file_from_google_drive(
         file_id=model_id, dest_path=model_file, unzip=True)
-    nmt = NMT("./content/model/")
+    nmt = NMT(MODEL_DIR)
 
     def pynmt(sentence):
         pred, prob = nmt.translate_beam(sentence)
