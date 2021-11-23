@@ -17,22 +17,20 @@ class NMT(object):
         additional_special_tokens = ['<A>', '<B>', '<C>', '<D>', '<E>', '<a>', '<b>', '<c>', '<d>', '<e>']
         tokenizer.add_tokens(additional_special_tokens)
         
-    def translate_beam(self, src_sentence: str, beamsize=5):
-        """
-        複数の翻訳候補をリストで返す。
-        """
+    def translate(self, src_sentence: str):
         input_ids = self.tokenizer(src_sentence, return_tensors='pt').input_ids
         if USE_GPU:
             input_ids = input_ids.cuda()
-        pred_list = self.trained_model.generate(input_ids)
-        return pred_list, sorted(prob_list, reverse=True)
-
+        predict = self.trained_model.generate(input_ids)
+        return tokenizer.decode(predict[0], skip_special_tokens=True)
+        
 def make_pynmt(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', model_file='./model.zip'):
     GoogleDriveDownloader.download_file_from_google_drive(
         file_id=model_id, dest_path=model_file, unzip=True)
     nmt = NMT(MODEL_DIR)
 
     def pynmt(sentence):
-        pred, prob = nmt.translate_beam(sentence)
+        pred, prob = nmt.translate(sentence)
         return pred, prob
     return pynmt
+
