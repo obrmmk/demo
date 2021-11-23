@@ -9,11 +9,12 @@ DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 print('DEVICE :', DEVICE)
 
 MODEL_DIR = "./content/model/"
+
 class NMT(object):
     model: object
     def __init__(self, dir):
-        trained_model = MT5ForConditionalGeneration.from_pretrained(dir)
-        tokenizer = MT5Tokenizer.from_pretrained(dir, is_fast=True)
+        trained_model = MT5ForConditionalGeneration.from_pretrained(dir).to(DEVICE)
+        tokenizer = MT5Tokenizer.from_pretrained(dir, is_fast=True).to(DEVICE)
         additional_special_tokens = ['<A>', '<B>', '<C>', '<D>', '<E>', '<a>', '<b>', '<c>', '<d>', '<e>']
         tokenizer.add_tokens(additional_special_tokens)
         
