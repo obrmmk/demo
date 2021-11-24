@@ -58,13 +58,6 @@ def make_logger():
     logger.setLevel(DEBUG)
     logger.propagate = False
 
-    # # ログを出力セル（コンソール）表示するためのHandlerを設定する
-    # streamHandler = StreamHandler()
-    # fileFormat = Formatter("%(asctime)s - %(levelname)-8s - %(message)s")
-    # streamHandler.setFormatter(fileFormat)
-    # streamHandler.setLevel(DEBUG)
-    # logger.addHandler(streamHandler)
-
     # ログをファイルに記録するためのHandlerを設定する
     fileHandler = FileHandler(f"{DIR_PATH}/test.log", encoding="utf-8")
     fileFormat = Formatter("%(asctime)s - %(levelname)-8s - %(message)s")
@@ -72,19 +65,8 @@ def make_logger():
     fileHandler.setLevel(INFO)
     logger.addHandler(fileHandler)
 
-
-# def kill_handlers():
-#     """ Handlerをすべて削除して後片づけする
-#     """
-#     for h in logger.handlers[::1]:
-#         logger.removeHandler(h)
-
 make_dir()
 make_logger()
-
-
-# logger = logging.getLogger('my_logger')
-# logging.basicConfig()
 
 def start_translator(translate=dummy, html=TRANSLATOR_HTML):
     def convert(text):
