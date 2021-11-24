@@ -35,10 +35,8 @@ TRANSLATOR_HTML = '''
 </script>
 '''
 
-
 import os
-from logging import getLogger, StreamHandler, FileHandler, Formatter, DEBUG, INFO
-import os
+import logging
 from logging import getLogger, StreamHandler, FileHandler, Formatter, DEBUG, INFO
 
 DIR_PATH = "/content/logging_test"
