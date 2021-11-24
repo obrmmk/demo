@@ -16,8 +16,28 @@ from google.colab import output
 from google.colab.output import eval_js
 
 
-js = Javascript('''
-            async function load_image() {
+# js = Javascript('''
+#             async function load_image() {
+#                 const div = document.createElement('div');
+#                 var button = document.createElement('button');
+#                 var log = document.createElement('div');
+
+#                 button.textContent = "button";
+#                 button.onclick = function(){
+#                     log.innerHTML = "Button Clicked.";
+#                 }
+#                 div.appendChild(button)
+#                 div.appendChild(log)
+
+#                 document.querySelector("#output-area").appendChild(div);
+#                 return
+#                 } ''')
+
+display(js)
+eval_js('load_image()')
+
+TRANSLATOR_HTML = '''
+async function load_image() {
                 const div = document.createElement('div');
                 var button = document.createElement('button');
                 var log = document.createElement('div');
@@ -31,12 +51,7 @@ js = Javascript('''
 
                 document.querySelector("#output-area").appendChild(div);
                 return
-                } ''')
-
-display(js)
-eval_js('load_image()')
-
-TRANSLATOR_HTML = '''
+                } 
 <textarea id="input" style="float: left; width: 48%; height:100px; font-size: large;"></textarea>
 <textarea id="output" style="width: 48%; height:100px; font-size: large;"></textarea>
 <script>
