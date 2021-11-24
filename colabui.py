@@ -33,8 +33,8 @@ from google.colab.output import eval_js
 #                 return
 #                 } ''')
 
-display(js)
-eval_js('load_image()')
+#display(js)
+#eval_js('load_image()')
 
 TRANSLATOR_HTML = '''
 async function load_image() {
