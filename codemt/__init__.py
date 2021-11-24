@@ -69,7 +69,7 @@ def dummy(s):
 def make_codemt(nmt=dummy):
     def translate(s, **kw):
         ss = []
-        for statement, options in s:#deeppy(s):
+        for statement, options in deeppy(s):
             s, vars = preprocess(statement)
             cs, _ = nmt(s)
             s = cs[0]
