@@ -18,26 +18,25 @@ TRANSLATOR_HTML = '''
 <script>
     var timer = null;
     document.getElementById('input').addEventListener('input', (e) => {
-    var text = e.srcElement.value;
-    if(timer !== null) {
-        console.log('clear');
-        clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-        (async function() {
-            const result = await google.colab.kernel.invokeFunction('notebook.Convert', [text], {});
-            const data = result.data['application/json'];
-            const textarea = document.getElementById('output');
-            textarea.textContent = data.result;
-        })();
-        timer = null;
-    }, 400);
+        var text = e.srcElement.value;
+        if(timer !== null) {
+            clearTimeout(timer);
+        }
+        timer = setTimeout(() => {
+            timer = null;
+            (async function() {
+                const result = await google.colab.kernel.invokeFunction('notebook.Convert', [text], {});
+                const data = result.data['application/json'];
+                const textarea = document.getElementById('output');
+                textarea.textContent = data.result;
+            })();
+        }, 600);
     });
 </script>
 '''
 
 
-def run_corgi(nmt, delay=400):
+def run_corgi(nmt, delay=600):
     def convert(text):
         try:
             text = nmt(text, beams=1)
@@ -47,10 +46,10 @@ def run_corgi(nmt, delay=400):
         return e
 
     output.register_callback('notebook.Convert', convert)
-    HTML = TRANSLATOR_HTML.replace('400', str(delay))
+    HTML = TRANSLATOR_HTML.replace('600', str(delay))
     display(IPython.display.HTML(HTML))
 
 
 def start_corgi(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', delay=600):
-    nmt = compose_nmt(generate_nmt(model_file=model_id))
+    nmt = compose_nmt(generate_nmt(model_id=model_id))
     run_corgi(nmt, delay)

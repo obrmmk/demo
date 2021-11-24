@@ -11,7 +11,7 @@ Chunk = {
 Code = '`' { (!'`' .)+ #Code } '`' / { '<' (!'>' .)+ '>' #Special } / Expression
 
 Expression =
-  Primary {^ OP Primary #Binary }*
+  Suffix {^ OP Suffix #Binary }*
 
 OP =
   / "==" / "!=" / "<=" / ">=" / "<>"
@@ -22,7 +22,7 @@ Suffix = Primary _Postfix*
 
 _Postfix =
   / {^ "(" Expression? ("," Expression )* ")" #App}
-  / {^ "[" Expression? (":" Expression )* "]" #Index}
+  / {^ "[" Expression? (([:,] _) Expression )* "]" #Index}
 
 Primary =
   / Group
@@ -43,7 +43,7 @@ Number =
   / { '.' [0-9]+ #Number } _
 
 String =
-  / '"' { (!'"' .) #String } '"' _
-  / "'" { (!"'" .) #String } "'" _
+  / { 'f'? '"'  (!'"' .) '"' #String } _
+  / { 'f'? "'" (!"'" .)  "'" #String } _
 
-example Start Aの度数分布図をビンをBとして描写する
+example Start df['a']の度数分布図をビンをf()として描写する

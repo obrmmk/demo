@@ -60,5 +60,5 @@ def compose_nmt(nmt, replace_before=replace_expression, replace_after=replace_sp
 
 if __name__ == '__main__':
     print(*replace_expression('Aの度数分布図をビンをBとして描写する'))
-    print(*replace_expression('Aの度数分布図をビンを B として描写する'))
+    print(*replace_expression('Aの度数分布図をビンを"B"として描写する'))
     print(*replace_expression('<A>の度数分布図をビンを<B>として描写する'))
