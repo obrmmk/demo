@@ -1,5 +1,17 @@
+try:
+    import sentencepiece
+except ModuleNotFoundError:
+    import os
+    os.system('pip install sentencepiece')
+
+try:
+    import transformers
+except ModuleNotFoundError:
+    import os
+    os.system('pip install transformers')
+
 import torch
-from torch.utils.data import Dataset, DataLoader
+# from torch.utils.data import Dataset, DataLoader
 from transformers import MT5ForConditionalGeneration, MT5Tokenizer
 
 from google_drive_downloader import GoogleDriveDownloader
@@ -16,8 +28,8 @@ class NMT(object):
     def __init__(self, dir):
         self.trained_model = MT5ForConditionalGeneration.from_pretrained(dir).to(DEVICE)
         self.tokenizer = MT5Tokenizer.from_pretrained(dir, is_fast=True)
-        additional_special_tokens = ['<A>', '<B>', '<C>', '<D>', '<E>', '<a>', '<b>', '<c>', '<d>', '<e>']
-        self.tokenizer.add_tokens(additional_special_tokens)
+        # additional_special_tokens = ['<A>', '<B>', '<C>', '<D>', '<E>', '<a>', '<b>', '<c>', '<d>', '<e>']
+        # self.tokenizer.add_tokens(additional_special_tokens)
         
     def translate_beam(self, src_sentence: str):
         self.trained_model.config.update({"num_beams": 5})
