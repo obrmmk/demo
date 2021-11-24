@@ -71,9 +71,9 @@ make_logger()
 def start_translator(translate=dummy, html=TRANSLATOR_HTML):
     def convert(text):
         try:
-            logger.info(text)
+            logger.info('source', text)
             text = translate(text)
-            logger.info(text)
+            logger.info('target', text)
             return IPython.display.JSON({'result': text})
         except Exception as e:
             print(e)
