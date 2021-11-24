@@ -74,9 +74,10 @@ def make_codemt(nmt=dummy, print=print_nop):
         ss = []
         for statement, options in deeppy(s):
             s, vars = preprocess(statement)
+            print('before',s)
             cs, _ = nmt(s)
             s = cs[0]
-            print(s)
+            print('after',s)
             for key in vars:
                 s = s.replace(key, vars[key])
             ss.append(s)
