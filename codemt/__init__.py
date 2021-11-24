@@ -15,12 +15,12 @@ def deeppy(text):
     ss = []
     for line in text.split('\n'):
         # A そこで、B はオプション形式
-        matched = re.findall('(.*)(そこで、|そのとき、|ここで、|さらに)(.*)', text)
-        if len(matched) > 0:
-            statement = matched[0][0]
-            options = matched[0][2].split('。')
-            ss.append((statement, filter_options(options)))
-            continue
+        # matched = re.findall('(.*)(そこで、|そのとき、|ここで、|さらに)(.*)', text)
+        # if len(matched) > 0:
+        #     statement = matched[0][0]
+        #     options = matched[0][2].split('。')
+        #     ss.append((statement, filter_options(options)))
+        #     continue
         for statement in line.split('。'):
             if len(statement) > 0:
                 options = []
