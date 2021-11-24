@@ -4,6 +4,12 @@ except ModuleNotFoundError:
     import os
     os.system('pip install sentencepiece')
 
+try:
+    import transformers
+except ModuleNotFoundError:
+    import os
+    os.system('pip install transformers')
+
 import torch
 # from torch.utils.data import Dataset, DataLoader
 from transformers import MT5ForConditionalGeneration, MT5Tokenizer
