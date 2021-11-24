@@ -66,13 +66,17 @@ def preprocess(s):
 def dummy(s):
     return [s], [100.0]
 
-def make_codemt(nmt=dummy):
+def print_nop(*s):
+    pass
+
+def make_codemt(nmt=dummy, print=print_nop):
     def translate(s, **kw):
         ss = []
         for statement, options in deeppy(s):
             s, vars = preprocess(statement)
             cs, _ = nmt(s)
             s = cs[0]
+            print(s)
             for key in vars:
                 s = s.replace(key, vars[key])
             ss.append(s)
