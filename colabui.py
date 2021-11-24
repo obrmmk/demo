@@ -58,12 +58,12 @@ def make_logger():
     logger.setLevel(DEBUG)
     logger.propagate = False
 
-    # ログを出力セル（コンソール）表示するためのHandlerを設定する
-    streamHandler = StreamHandler()
-    fileFormat = Formatter("%(asctime)s - %(levelname)-8s - %(message)s")
-    streamHandler.setFormatter(fileFormat)
-    streamHandler.setLevel(DEBUG)
-    logger.addHandler(streamHandler)
+    # # ログを出力セル（コンソール）表示するためのHandlerを設定する
+    # streamHandler = StreamHandler()
+    # fileFormat = Formatter("%(asctime)s - %(levelname)-8s - %(message)s")
+    # streamHandler.setFormatter(fileFormat)
+    # streamHandler.setLevel(DEBUG)
+    # logger.addHandler(streamHandler)
 
     # ログをファイルに記録するためのHandlerを設定する
     fileHandler = FileHandler(f"{DIR_PATH}/test.log", encoding="utf-8")
@@ -73,25 +73,14 @@ def make_logger():
     logger.addHandler(fileHandler)
 
 
-def logger_test():
-    """ loggerの挙動を確認する
-    """
-    logger.debug("DEBUGレベルです")
-    logger.info("INFOレベルです")
-    logger.warning("WARNINGレベルです")
-    logger.error("ERRORレベルです")
-    logger.critical("CRITICALレベルです")
-
-
-def kill_handlers():
-    """ Handlerをすべて削除して後片づけする
-    """
-    for h in logger.handlers[::1]:
-        logger.removeHandler(h)
+# def kill_handlers():
+#     """ Handlerをすべて削除して後片づけする
+#     """
+#     for h in logger.handlers[::1]:
+#         logger.removeHandler(h)
 
 make_dir()
 make_logger()
-logger_test()
 
 
 # logger = logging.getLogger('my_logger')
