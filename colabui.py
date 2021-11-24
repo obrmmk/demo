@@ -89,15 +89,13 @@ def kill_handlers():
     for h in logger.handlers[::1]:
         logger.removeHandler(h)
 
+make_dir()
+make_logger()
+logger_test()
 
-if __name__ == "__main__":
-    make_dir()
-    make_logger()
-    logger_test()
-    kill_handlers()
 
-logger = logging.getLogger('my_logger')
-logging.basicConfig()
+# logger = logging.getLogger('my_logger')
+# logging.basicConfig()
 
 def start_translator(translate=dummy, html=TRANSLATOR_HTML):
     def convert(text):
