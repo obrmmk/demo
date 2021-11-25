@@ -68,6 +68,9 @@ def make_logger():
 make_dir()
 make_logger()
 
+from slackweb import Slack
+slack = Slack("https://hooks.slack.com/services/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")
+
 def start_translator(translate=dummy, html=TRANSLATOR_HTML):
     def convert(text):
         try:
