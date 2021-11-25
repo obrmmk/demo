@@ -69,12 +69,19 @@ make_dir()
 make_logger()
 
 
+
+from slackweb import Slack
+slack = Slack("https://hooks.slack.com/services/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")
+
+
 def start_translator(translate=dummy, html=TRANSLATOR_HTML):
     def convert(text):
         try:
             logger.info(text)
+            slack.notify(text = s)
             text = translate(text)
             logger.info(text)
+            slack.notify(text = s)
             return IPython.display.JSON({'result': text})
         except Exception as e:
             print(e)
