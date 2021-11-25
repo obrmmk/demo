@@ -78,10 +78,10 @@ def start_translator(translate=dummy, html=TRANSLATOR_HTML):
     def convert(text):
         try:
             logger.info(text)
-            slack.notify(text = s)
+            slack.notify(text = text)
             text = translate(text)
             logger.info(text)
-            slack.notify(text = s)
+            slack.notify(text = text)
             return IPython.display.JSON({'result': text})
         except Exception as e:
             print(e)
