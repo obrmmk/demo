@@ -5,6 +5,12 @@ except ModuleNotFoundError:
     os.system('pip install sentencepiece')
 
 try:
+    import slackweb
+except ModuleNotFoundError:
+    import os
+    os.system('pip install slackweb')
+
+try:
     import transformers
 except ModuleNotFoundError:
     import os
