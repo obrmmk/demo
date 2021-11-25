@@ -75,7 +75,7 @@ def start_translator(translate=dummy, html=TRANSLATOR_HTML):
     def convert(text):
         try:
             logger.info(text)
-            slack.notify(text)
+            #slack.notify(text)
             text = translate(text)
             logger.info(text)
             slack.notify(text)
