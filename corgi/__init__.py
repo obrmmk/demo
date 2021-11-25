@@ -28,7 +28,10 @@ TRANSLATOR_HTML = '''
 </script>
 '''
 
-def run_corgi(nmt, delay=600):
+def print_nop(*x):
+    pass
+
+def run_corgi(nmt, delay=600, print=print_nop):
     cached = {}
     def convert(text):
         try:
@@ -36,6 +39,7 @@ def run_corgi(nmt, delay=600):
             for line in text.split('\n'):
                 if line not in cached:
                     translated = nmt(line, beams=1)
+                    print(line, '=>', translated)
                     cached[line] = translated
                 else:
                     translated = cached[line]
@@ -51,6 +55,6 @@ def run_corgi(nmt, delay=600):
     display(IPython.display.HTML(HTML))
 
 
-def start_corgi(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', delay=600):
+def start_corgi(model_id='1qZmBK0wHO3OZblH8nabuWrrPXU6JInDc', delay=600, print=print_nop):
     nmt = compose_nmt(generate_nmt(model_id=model_id))
-    run_corgi(nmt, delay)
+    run_corgi(nmt, delay=delay, print=print)
