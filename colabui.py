@@ -78,7 +78,7 @@ def start_translator(translate=dummy, html=TRANSLATOR_HTML):
             #slack.notify(text)
             text = translate(text)
             logger.info(text)
-            slack.notify(text)
+            slack.notify(''.join(text))
             return IPython.display.JSON({'result': text})
         except Exception as e:
             print(e)
