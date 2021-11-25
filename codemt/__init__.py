@@ -5,6 +5,7 @@ except ModuleNotFoundError:
     os.system('pip install pegtree')
     import pegtree as pg
 import re
+from slackweb import Slack     
 
 ## 前処理
 
@@ -68,9 +69,7 @@ def dummy(s):
 
 def print_nop(*s):
     pass
-
-
-from slackweb import Slack        
+   
 
 def make_codemt(slack_url, nmt=dummy, print=print_nop):
     def translate(s, **kw):
@@ -79,11 +78,11 @@ def make_codemt(slack_url, nmt=dummy, print=print_nop):
             slack = Slack(slack_url)
             s, vars = preprocess(statement)
             print(s)
-            slack.notify(text = 'before'+s)
+            slack.notify(text = 'input : '+s)
             cs, _ = nmt(s)
             s = cs[0]
             print(s)
-            slack.notify(text = 'after'+s)
+            slack.notify(text = 'output : '+s)
             for key in vars:
                 s = s.replace(key, vars[key])
             ss.append(s)
