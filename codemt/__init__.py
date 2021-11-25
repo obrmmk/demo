@@ -79,10 +79,11 @@ def make_codemt(slack_url, nmt=dummy, print=print_nop):
             slack = Slack(slack_url)
             s, vars = preprocess(statement)
             print(s)
-            slack.notify(text = text)
+            slack.notify(text = 'before'+s)
             cs, _ = nmt(s)
             s = cs[0]
             print(s)
+            slack.notify(text = 'after'+s)
             for key in vars:
                 s = s.replace(key, vars[key])
             ss.append(s)
