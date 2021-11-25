@@ -5,13 +5,6 @@ from google.colab import output
 
 # ダミー関数
 
-
-def dummy(text: str, **kw):
-    # nmt = PyNMT(model, src_vocab, tgt_vocab)
-    # translate(nmt, 'もしa+1が偶数ならば')
-    return 'ほ'
-
-
 TRANSLATOR_HTML = '''
 <textarea id="input" style="float: left; width: 48%; height:100px; font-size: large;"></textarea>
 <textarea id="output" style="width: 48%; height:100px; font-size: large;"></textarea>
@@ -35,11 +28,20 @@ TRANSLATOR_HTML = '''
 </script>
 '''
 
+cached = {}
 
 def run_corgi(nmt, delay=600):
     def convert(text):
         try:
-            text = nmt(text, beams=1)
+            ss = []
+            for line in text.split('\n'):
+                if line not in cached:
+                    translated = nmt(line, beams=1)
+                    cached[line] = translated
+                else:
+                    translated = cached[line]
+                ss.append(translated)
+            text = '\n'.join(ss)
             return IPython.display.JSON({'result': text})
         except Exception as e:
             print(e)
