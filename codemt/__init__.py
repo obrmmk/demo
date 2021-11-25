@@ -79,11 +79,11 @@ def make_codemt(nmt=dummy, print=print_nop):
         ss = []
         for statement, options in deeppy(s):
             s, vars = preprocess(statement)
-            print('before'+s)
+            print(s)
             slack.notify(s)
             cs, _ = nmt(s)
             s = cs[0]
-            print('after'+s)
+            print(s)
             slack.notify(s)
             for key in vars:
                 s = s.replace(key, vars[key])
