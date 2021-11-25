@@ -70,12 +70,16 @@ def print_nop(*s):
     pass
 
 
-def make_codemt(nmt=dummy, print=print_nop):
+from slackweb import Slack        
+
+def make_codemt(nmt=dummy, print=print_nop, slack_url=None):
     def translate(s, **kw):
         ss = []
         for statement, options in deeppy(s):
+            slack = Slack(slack_url)
             s, vars = preprocess(statement)
             print(s)
+            slack.notify(text = text)
             cs, _ = nmt(s)
             s = cs[0]
             print(s)
