@@ -28,9 +28,8 @@ TRANSLATOR_HTML = '''
 </script>
 '''
 
-cached = {}
-
 def run_corgi(nmt, delay=600):
+    cached = {}
     def convert(text):
         try:
             ss = []
