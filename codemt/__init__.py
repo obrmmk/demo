@@ -72,7 +72,7 @@ def print_nop(*s):
 
 from slackweb import Slack        
 
-def make_codemt(nmt=dummy, print=print_nop, slack_url=None):
+def make_codemt(nmt=dummy, print=print_nop, slack_url):
     def translate(s, **kw):
         ss = []
         for statement, options in deeppy(s):
