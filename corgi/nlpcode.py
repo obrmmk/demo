@@ -27,9 +27,9 @@ def replace_expression(s):
     ss = []
     vars = {}
     index = 0
+    #print(repr(tree))
     for t in tree:
         tag = t.getTag()
-        print(repr(t))
         if tag == 'Chunk' or tag == 'Special':
             ss.append(str(t))
         else:

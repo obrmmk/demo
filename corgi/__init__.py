@@ -32,7 +32,7 @@ def print_nop(*x):
     pass
 
 def run_corgi(nmt, delay=600, print=print_nop):
-    cached = {}
+    cached = {'':''}
     def convert(text):
         try:
             ss = []
