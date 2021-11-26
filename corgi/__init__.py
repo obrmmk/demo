@@ -1,7 +1,10 @@
 from .t5 import generate_nmt
 from .nlpcode import compose_nmt
-import IPython
-from google.colab import output
+try:
+    import IPython
+    from google.colab import output
+except ModuleNotFoundError:
+    pass
 
 # ダミー関数
 
