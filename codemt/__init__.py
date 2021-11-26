@@ -5,6 +5,7 @@ except ModuleNotFoundError:
     os.system('pip install pegtree')
     import pegtree as pg
 import re
+from slackweb import Slack     
 
 ## 前処理
 
@@ -68,16 +69,20 @@ def dummy(s):
 
 def print_nop(*s):
     pass
+   
 
-def make_codemt(nmt=dummy, print=print_nop):
+def make_codemt(slack_url, nmt=dummy, print=print_nop):
     def translate(s, **kw):
         ss = []
         for statement, options in deeppy(s):
+            slack = Slack(slack_url)
             s, vars = preprocess(statement)
-            print('before',s)
+            print(s)
+            slack.notify(text = 'input : '+s)
             cs, _ = nmt(s)
             s = cs[0]
-            print('after',s)
+            print(s)
+            slack.notify(text = 'output : '+s)
             for key in vars:
                 s = s.replace(key, vars[key])
             ss.append(s)

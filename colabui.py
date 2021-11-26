@@ -35,11 +35,47 @@ TRANSLATOR_HTML = '''
 </script>
 '''
 
+import os
+import logging
+from logging import getLogger, StreamHandler, FileHandler, Formatter, DEBUG, INFO
+
+DIR_PATH = "/content/logging_test"
+
+
+def make_dir():
+    """ Colabのランタイムに（GoogleDriveではなく）ディレクトリを作成する
+    """
+    os.makedirs(DIR_PATH, exist_ok=True)
+
+
+def make_logger():
+    """ loggerオブジェクトの作成
+    """
+    global logger
+
+    # loggerオブジェクトを生成する
+    logger = getLogger(__name__)
+    logger.setLevel(DEBUG)
+    logger.propagate = False
+
+    # ログをファイルに記録するためのHandlerを設定する
+    fileHandler = FileHandler(f"{DIR_PATH}/test.log", encoding="utf-8")
+    fileFormat = Formatter("%(asctime)s - %(levelname)-8s - %(message)s")
+    fileHandler.setFormatter(fileFormat)
+    fileHandler.setLevel(INFO)
+    logger.addHandler(fileHandler)
+
+make_dir()
+make_logger()
+
+
 
 def start_translator(translate=dummy, html=TRANSLATOR_HTML):
     def convert(text):
         try:
+            #logger.info(text)
             text = translate(text)
+            #logger.info(text)
             return IPython.display.JSON({'result': text})
         except Exception as e:
             print(e)
@@ -47,6 +83,7 @@ def start_translator(translate=dummy, html=TRANSLATOR_HTML):
 
     output.register_callback('notebook.Convert', convert)
     display(IPython.display.HTML(html))
+
 
 # IDE Demo
 
