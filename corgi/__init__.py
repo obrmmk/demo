@@ -34,6 +34,24 @@ TRANSLATOR_HTML = '''
 def print_nop(*x):
     pass
 
+def make_logger():
+    """ loggerオブジェクトの作成
+    """
+    global logger
+
+    # loggerオブジェクトを生成する
+    logger = getLogger(__name__)
+    logger.setLevel(DEBUG)
+    logger.propagate = False
+
+    # ログをファイルに記録するためのHandlerを設定する
+    fileHandler = FileHandler(f"{DIR_PATH}/test.log", encoding="utf-8")
+    fileFormat = Formatter("%(asctime)s - %(levelname)-8s - %(message)s")
+    fileHandler.setFormatter(fileFormat)
+    fileHandler.setLevel(INFO)
+    logger.addHandler(fileHandler)
+
+
 def run_corgi(nmt, delay=600, print=print_nop):
     cached = {'':''}
     def convert(text):
@@ -42,6 +60,10 @@ def run_corgi(nmt, delay=600, print=print_nop):
             for line in text.split('\n'):
                 if line not in cached:
                     translated = nmt(line, beams=1)
+                    make_dir()
+                    make_logger()
+                    logger.info('input : '+line)
+                    logger.info('input : '+translated)
                     print(line, '=>', translated)
                     cached[line] = translated
                 else:
