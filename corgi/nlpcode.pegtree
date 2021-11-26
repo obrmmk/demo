@@ -1,0 +1,51 @@
+
+Start = {
+    (Code _ / Chunk)*
+    #Statement
+}
+
+Chunk = {
+    . (!Code .)* #Chunk
+}
+
+Code = '`' { (!'`' .)+ #Code } '`' / { '<' (!'>' .)+ '>' #Special } / Expression
+
+Expression =
+  Suffix {^ OP Suffix #Binary }*
+
+OP =
+  / "==" / "!=" / "<=" / ">=" / "<>"
+  / "**" / "//" / ">>" / "<<<" / ">>"
+  / "+" / "-" / "*" / "/" / "%" / "="
+
+Suffix = Primary _Postfix*
+
+_Postfix =
+  / {^ "(" Expression? ("," Expression )* ")" #App}
+  / {^ "[" Expression? (([:,] _) Expression )* "]" #Index}
+
+Primary =
+  / Group
+  / String
+  / Name
+  / Number
+
+Group = 
+  / "(" Expression ")"
+  / { "[" Expression? ("," Expression)* ","? "]"  #List }
+  / { "(" Expression? ("," Expression)* ","? ")"  #Tuple }
+
+Name = 
+  { [A-Za-z_] [A-Za-z_.0-9]* #Name } _
+
+Number = 
+  / { [0-9]+ ('.' [0-9]+)? #Number } _
+  / { '.' [0-9]+ #Number } _
+
+String =
+  / { 'f'? '"'  (!'"' .)* '"' #String } _
+  / { 'f'? "'" (!"'" .)*  "'" #String } _
+
+
+example Start ファイル'data.csv'を読み込む
+example String 'data.csv'を読み込む
