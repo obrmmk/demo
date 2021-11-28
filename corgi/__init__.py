@@ -177,9 +177,9 @@ def run_corgi(nmt, delay=600, print=print_nop):
                 }
                 #print(json.dumps(data, ensure_ascii=False))
                 # slack.notify(text = json.dumps(data, ensure_ascii=False))
-                json_data = json.dumps(data, ensure_ascii=False)
-                for i in json.loads(json_data)['logs']:
-                    slack.notify(text = (json.loads(json_data)['session']+str(i)))
+                json_data = json.loads(json.dumps(data, ensure_ascii=False))
+                for i in json_data['logs']:
+                    print(json_data['session'], i['index'], i['input'], i['translated'])
                 logs.clear()
         except Exception as e:
             print(e)
