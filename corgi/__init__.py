@@ -181,8 +181,6 @@ def run_corgi(nmt, delay=600, print=print_nop):
                 for i in json_data['logs']:
                     i['session'] = json_data['session']
                     slack.notify(text = i )
-                #for i in json_data['logs']:
-                #    slack.notify(text =('session : '+json_data['session']+', index : '+str(i['index'])+', input : '+i['input']+', translated : '+i['translated']))
                 logs.clear()
         except Exception as e:
             print(e)
