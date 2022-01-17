@@ -1,0 +1,145 @@
+<A> [ <B> ] . quantile ( 0.25 )	<A> の <B> についての下位 25 %
+<A> [ <B> ] . quantile ( 0.25 )	<A> の <B> の下位 4 分の１
+<A> [ <B> ] . quantile ( 0.25 )	<A> の <B> の下位の 4 分の１
+<A> [ <B> ] . quantile ( 0.25 )	<A> の <B> についての下位 25 % を確認する
+<A> [ <B> ] . quantile ( 0.25 )	<A> 表データの <B> カラムについての下位 25 % を確認する
+<A> [ <B> ] . quantile ( 0.25 )	<A> 表データの <B> カラムについての下位の 25 % を表示する
+<A> [ <B> ] . quantile ( 0.25 )	<A> の <B> についての第一四分位数を得る
+<A> [ <B> ] . quantile ( 0.25 )	<A> データフレームの <B> カラムについての下位 25 % を取得する
+<A> [ <B> ] . quantile ( 0.25 )	<A> 表データの <B> カラムの下位の 4 分の１を得る
+<A> [ <B> ] . quantile ( 0.75 )	<A> の <B> についての上位 4 分の１
+<A> [ <B> ] . quantile ( 0.75 )	<A> の <B> の上位の 4 分の１
+<A> [ <B> ] . quantile ( 0.75 )	表データ <A> のカラム <B> についての上位の 25 %
+<A> [ <B> ] . quantile ( 0.75 )	<A> の <B> についての上位 4 分の１を見る
+<A> [ <B> ] . quantile ( 0.75 )	<A> の <B> についての上位 25 % を確認する
+<A> [ <B> ] . quantile ( 0.75 )	データフレーム <A> のカラム <B> の上位 4 分の１を見る
+<A> [ <B> ] . quantile ( 0.75 )	<A> の <B> についての上位 4 分の１を抽出する
+<A> [ <B> ] . quantile ( 0.75 )	<A> データフレームの <B> カラムの上位 4 分の１を抽出する
+<A> [ <B> ] . quantile ( 0.75 )	<A> データフレームの <B> カラムの上位の 4 分の１をえる
+<A> [ <B> ] . max ( )	<A> の <B> についての最大
+<A> [ <B> ] . max ( )	<A> 表データの <B> カラムの最大
+<A> [ <B> ] . max ( )	<A> データフレームの <B> カラムの最大
+<A> [ <B> ] . max ( )	<A> の <B> についての最大を見る
+<A> [ <B> ] . max ( )	表データ <A> のカラム <B> についての最大を調べる
+<A> [ <B> ] . max ( )	<A> データフレームの <B> カラムについての最大値を調べる
+<A> [ <B> ] . max ( )	<A> の <B> についての最大値を得る
+<A> [ <B> ] . max ( )	<A> の <B> についての最大を取得する
+<A> [ <B> ] . max ( )	表データ <A> のカラム <B> についての最大を抽出する
+<A> [ <B> ] . min ( )	<A> の <B> についての最小
+<A> [ <B> ] . min ( )	表データ <A> のカラム <B> についての最小値
+<A> [ <B> ] . min ( )	<A> データフレームの <B> カラムについての最小値
+<A> [ <B> ] . min ( )	<A> の <B> についての最小値を表示する
+<A> [ <B> ] . min ( )	表データ <A> のカラム <B> についての最小値を確認する
+<A> [ <B> ] . min ( )	<A> 表データの <B> カラムについての最小値を見る
+<A> [ <B> ] . min ( )	<A> の <B> についての最小を得る
+<A> [ <B> ] . min ( )	<A> 表データの <B> カラムについての最小をえる
+<A> [ <B> ] . min ( )	<A> データフレームの <B> カラムの最小を抽出する
+pd . read_csv ( <A> )	<A> をデータフレームとして読み込む
+pd . read_csv ( <A> )	<A> ファイルをデータフレームで読み込む
+pd . read_csv ( <A> )	<A> をデータフレームで読み込む
+<A> = pd . read_csv ( <B> )	<B> をデータフレームとして読み込み、 <A> とする
+<A> = pd . read_csv ( <B> )	<B> をデータフレームとして読み込んだ結果を <A> とする
+<A> = pd . read_csv ( <B> )	ファイル <B> をデータフレームとして読み込んで、 <A> とする
+<A> = pd . read_csv ( <B> )	ファイル <B> をデータフレームとして読み込んだ結果を <A> とする
+<A> = pd . read_csv ( <B> )	<B> ファイルをデータフレームとして読み込んで、 <A> にする
+<A> = pd . read_csv ( <B> )	<B> ファイルをデータフレームとして読み込まれた結果を <A> とする
+pd . read_csv ( <A> )	<A> から読み込む
+pd . read_csv ( <A> )	データフレームをファイル <A> から読み込む
+pd . read_csv ( <A> )	データフレームを <A> ファイルから読み込む
+<A> = pd . read_csv ( <B> )	データフレームを <B> から読み込み、 <A> にする
+<A> = pd . read_csv ( <B> )	データフレームを <B> から読み込んだ結果を <A> に代入する
+<A> = pd . read_csv ( <B> )	データフレームを <B> ファイルから読み込んで、 <A> にする
+<A> = pd . read_csv ( <B> )	データフレームを <B> ファイルから読み込んだ結果を <A> に代入する
+<A> = pd . read_csv ( <B> )	データフレームをファイル <B> から読み込み、 <A> に代入する
+<A> = pd . read_csv ( <B> )	データフレームをファイル <B> から読み込んだ結果を <A> にする
+pd . read_csv ( <A> )	CSV ファイル <A> をデータフレームとして読み込む
+pd . read_csv ( <A> )	CSV ファイル <A> から読み込む
+<A> = pd . read_csv ( <B> )	CSV ファイル <B> をデータフレームとして読み込んで、 <A> とする
+<A> = pd . read_csv ( <B> )	CSV ファイル <B> をデータフレームとして読み込んだ結果を <A> にする
+<A> = pd . read_csv ( <B> )	CSV ファイル <B> から読み込み、 <A> にする
+<A> = pd . read_csv ( <B> )	CSV ファイル <B> から読み込まれた結果を <A> にする
+pd . read_csv ( 'file.csv' )	読み込む
+pd . read_csv ( <A> )	CSV ファイル <A> からデータフレームを読み込む
+<A> = pd . read_csv ( <B> )	CSV ファイル <B> からデータフレームを読み込んで、 <A> に代入する
+<A> = pd . read_csv ( <B> )	CSV ファイル <B> からデータフレームを読み込まれた結果を <A> とする
+<A> = pd . read_csv ( 'file.csv' )	読み込んで、 <A> とする
+<A> = pd . read_csv ( 'file.csv' )	読み込んだ結果を <A> とする
+pd . read_csv ( <A> )	<A> をデータフレームに格納する
+pd . read_csv ( <A> )	データフレームに <A> ファイルを格納する
+pd . read_csv ( <A> )	ファイル <A> をデータフレームに格納する
+<A> = pd . read_csv ( <B> )	<B> をデータフレームに格納し、 <A> とする
+<A> = pd . read_csv ( <B> )	<B> をデータフレームに格納した結果を <A> に代入する
+<A> = pd . read_csv ( <B> )	データフレームにファイル <B> を格納し、 <A> に代入する
+<A> = pd . read_csv ( <B> )	データフレームにファイル <B> を格納した結果を <A> とする
+<A> = pd . read_csv ( <B> )	<B> ファイルをデータフレームに格納して、 <A> にする
+<A> = pd . read_csv ( <B> )	<B> ファイルをデータフレームに格納された結果を <A> に代入する
+pd . read_csv ( <A> )	CSV ファイル <A> をデータフレームに格納する
+pd . read_csv ( <A> )	データフレームに CSV ファイル <A> を格納する
+<A> = pd . read_csv ( <B> )	CSV ファイル <B> をデータフレームに格納し、 <A> とする
+<A> = pd . read_csv ( <B> )	CSV ファイル <B> をデータフレームに格納された結果を <A> とする
+<A> = pd . read_csv ( <B> )	データフレームに CSV ファイル <B> を格納して、 <A> に代入する
+<A> = pd . read_csv ( <B> )	データフレームに CSV ファイル <B> を格納された結果を <A> とする
+len ( <A> )	<A> のデータの数
+len ( <A> )	<A> データフレームのデータの件数
+len ( <A> )	表データ <A> のデータの数
+len ( <A> )	<A> のデータ件数を算出する
+len ( <A> )	<A> のデータの数を算出する
+len ( <A> )	データフレーム <A> のデータ件数を計算する
+len ( <A> )	<A> の中にいくつデータがあるか
+len ( <A> )	<A> データフレームにいくつデータがあるか
+len ( <A> )	<A> にいくつデータがあるか
+len ( <A> )	<A> の中にいくつデータがあるかを求める
+len ( <A> )	<A> にいくつデータがあるかを計算する
+len ( <A> )	<A> 表データ内にいくつデータがあるかを計算する
+<A> . corr ( ) [ <B> ]	<A> の <B> との相関係数
+<A> . corr ( ) [ <B> ]	表データ <A> のカラム <B> との相関
+<A> . corr ( ) [ <B> ]	<A> の <B> との相関
+<A> . corr ( ) [ <B> ] . sort_values	<A> の <B> との相関係数を順番に表示
+<A> . corr ( ) [ <B> ] . sort_values	表データ <A> のカラム <B> との相関係数を順番に表示
+<A> . corr ( ) [ <B> ] . sort_values	順番に表データ <A> のカラム <B> との相関を表示
+<A> . corr ( ) [ <B> ] . sort_values	<A> の <B> との相関係数の値を高い順に並べて表示する
+<A> . corr ( ) [ <B> ] . sort_values	<A> データフレームの <B> カラムとの相関の値を高い順に並べて表示する
+<A> . corr ( ) [ <B> ] . sort_values	<A> の <B> との相関の値をソートして表示する
+<A> . plot . scatter ( <B> = <C> , <D> = <E> )	<A> の <C> を <B> 軸 <E> を <D> 軸とした散布図
+<A> . plot . scatter ( <B> = <C> , <D> = <E> )	表データ <A> のカラム <C> を <B> 軸カラム <E> を <D> 軸とした散布図
+<A> . plot . scatter ( <B> = <C> , <D> = <E> )	データフレーム <A> のカラム <C> を <B> 軸カラム <E> を <D> 軸とした散布図
+<A> . plot . scatter ( x = <B> , y = <C> )	<A> の <B> と <C> で散布図を書く
+<A> . plot . scatter ( x = <B> , y = <C> )	データフレーム <A> のカラム <B> とカラム <C> で散布図を書く
+<A> . plot . scatter ( x = <B> , y = <C> )	<A> 表データの <B> カラムと <C> カラムで散布図を書く
+model = KMeans ( n_clusters = <A> )	KMean 法で <A> つのクラスタに分けるためのモデルを用意
+model = KMeans ( n_clusters = <A> )	分類するためのモデルを KMean 法で <A> つのクラスタに用意
+model = KMeans ( n_clusters = <A> )	KMean 法で <A> つのクラスタに用意
+model . fit ( <A> )	<A> でモデルを学習する
+model . fit ( <A> )	モデルを <A> で学習させる
+model . fit ( <A> )	モデルを <A> で学習
+pca = PCA ( n_components = 2 )	主成分分析で２次元に圧縮する次元圧縮用意
+pca = PCA ( n_components = 2 )	２次元に圧縮する次元圧縮用意
+pca = PCA ( n_components = 2 )	圧縮する次元圧縮用意
+pca . fit_transform ( <A> )	主成分分析で <A> を２次元に次元圧縮
+pca . fit_transform ( <A> )	２次元に表データ <A> を次元圧縮
+pca . fit_transform ( <A> )	２次元に <A> 表データを次元圧縮
+model = LinearRegression ( )	線形回帰のモデルを用意
+model = LinearRegression ( )	数値予測を用意
+model = LinearRegression ( )	するモデルを数値予測を用意
+model = LinearRegression ( )	数値予測をするモデルを用意
+model . fit ( <A> , <B> )	<A> と <B> でモデルを学習
+model . fit ( <A> , <B> )	<A> と <B> でモデルを学習させる
+model . fit ( <A> , <B> )	<A> と <B> でモデルを学習する
+model . predict ( <A> )	<A> から予測
+model . score ( <A> , <B> )	<A> , <B> でのモデルの決定係数
+model . score ( <A> , <B> )	<A> , <B> でのモデルの決定係数を算出する
+model . score ( <A> , <B> )	<A> , <B> でのモデルの決定係数
+model . score ( <A> , <B> )	<A> , <B> でのモデルの決定係数を算出する
+X_train , X_test , y_train , y_test = train_test_split ( X , y , test_size = 0.3 , random_state = 0 )	学習データとテストデータを 7 : 3 で分割する
+X_train , X_test , y_train , y_test = train_test_split ( X , y , test_size = 0.3 , random_state = 0 )	学習データとテストデータを分割する
+X_train , X_test , y_train , y_test = train_test_split ( X , y , test_size = 0.3 , random_state = 0 )	学習データとテストデータをホールドアウト法で分割する
+X_train , X_test , y_train , y_test = train_test_split ( X , y , test_size = 0.3 , random_state = 0 )	ホールドアウト法で分割する
+model = LogisticRegression ( )	ロジスティック回帰のモデルを用意
+model = LogisticRegression ( )	2 クラス分類をするモデルを用意
+model = LogisticRegression ( )	するモデルを 2 クラス分類を用意
+model = DecisionTreeClassifier ( )	決定木のモデルを用意
+model = DecisionTreeClassifier ( )	2 クラス分類をするモデルを用意
+model = DecisionTreeClassifier ( )	するモデルを 2 クラス分類を用意
+model = LinearSVC ( )	サポートベクターマシンのモデルを用意
+model = LinearSVC ( )	2 クラス分類をするモデルを用意
+model = LinearSVC ( )	するモデルを 2 クラス分類を用意
